@@ -39,11 +39,24 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
         
-        /* FIX: Ensures smooth scrolling stops BEFORE the fixed header covers the title */
         html { 
             scroll-behavior: smooth; 
             overflow-x: hidden;
             scroll-padding-top: 120px; 
+        }
+
+        /* PHOTO STYLING */
+        .profile-glow {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), inset 0 0 10px rgba(99, 102, 241, 0.5);
+            transition: all 0.3s ease;
+        }
+        .profile-glow:hover {
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.5), inset 0 0 15px rgba(99, 102, 241, 0.7);
+            transform: scale(1.02);
+            filter: grayscale(0%); /* Shows color on hover */
+        }
+        .profile-filter {
+            filter: grayscale(100%); /* Elegant B&W look by default */
         }
     </style>
 </head>
@@ -77,8 +90,23 @@
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             
             <!-- LEFT COLUMN: The Pitch -->
-            <div class="relative z-10 text-center lg:text-left">
-                <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-[10px] md:text-xs font-mono mb-8 backdrop-blur-sm">
+            <div class="relative z-10 text-center lg:text-left flex flex-col items-center lg:items-start">
+                
+                <!-- PROFILE IMAGE SLOT (New Addition) -->
+                <!-- Replace 'src' with your actual image path or URL -->
+                <div class="mb-8 relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-200"></div>
+                    <img 
+                        src="https://via.placeholder.com/150" 
+                        alt="Madhuka Gamage" 
+                        class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-slate-900 profile-filter profile-glow cursor-pointer"
+                        title="Madhuka Gamage"
+                    >
+                    <!-- Status Indicator Badge on Photo -->
+                    <div class="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-slate-900 rounded-full" title="Online / Available"></div>
+                </div>
+
+                <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-[10px] md:text-xs font-mono mb-6 backdrop-blur-sm">
                     <span class="flex h-2 w-2 relative">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -298,7 +326,7 @@
         </div>
     </section>
 
-    <!-- LEADERSHIP & ACADEMICS -->
+    <!-- LEADERSHIP & ACADEMICS (NEW) -->
     <section id="leadership" class="py-16 md:py-24 bg-slate-850 border-y border-slate-800">
          <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-10 text-center">Leadership & Academic Foundation</h2>
